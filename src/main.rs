@@ -1,5 +1,5 @@
 use elevenlabs_rs::{elevenlabs_api::ElevenLabsAPI, model::{tts::TTSMessage, voice::VoiceSettings}};
-use openai_rs::{context::Context, chat::{ChatMessage, Role, ChatHistoryBuilder}, transcription::{TranscriptionRequestBuilder, AudioFile}};
+use openai_rs::{context::Context, chat::{ChatMessage, Role, ChatHistoryBuilder}, transcription::{TranscriptionRequestBuilder, AudioFile}, translation::TranslationRequestBuilder};
 use tokio::{fs::File, io::AsyncWriteExt};
 
 fn get_file(name: &str) -> anyhow::Result<String> {
@@ -18,7 +18,7 @@ const VOICE_ID: &str = "u339B6b9cariBZ7Vw3q4";
 const INPUT_FILE: &str = "input_prompt.mp3";
 
 async fn transform_prompt(openai: &Context, prompt: File) -> anyhow::Result<String> {
-    Ok(openai.create_transcription(TranscriptionRequestBuilder::default().model("whisper-1").file(AudioFile::MP3(prompt)).build()?).await?.text)
+    Ok(openai.create_translation(TranslationRequestBuilder::default().prompt("[English]").model("whisper-1").file(AudioFile::MP3(prompt)).build()?).await?.text)
 }
 
 async fn generate_response(openai: &Context, elevenlabs: &ElevenLabsAPI, history: &mut Vec<ChatMessage>) {
