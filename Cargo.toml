@@ -9,3 +9,5 @@ edition = "2021"
 anyhow = "1.0.70"
 openai_rs = { path = "./OpenAI-Rust" }
 elevenlabs_rs = { path = "./elevenlabs-api-rust" }
+tokio = "1.26.0"
+rodio = "0.17.1"
