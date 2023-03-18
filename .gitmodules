@@ -1,0 +1,6 @@
+[submodule "elevenlabs-api-rust"]
+	path = elevenlabs-api-rust
+	url = git@github.com:GabrielTofvesson/elevenlabs-api-rust.git
+[submodule "OpenAI-Rust"]
+	path = OpenAI-Rust
+	url = git@github.com:GabrielTofvesson/OpenAI-Rust.git
